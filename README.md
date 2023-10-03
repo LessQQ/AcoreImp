@@ -10,13 +10,8 @@ First, we need to build and install libimp:
 
 Now build the rest:
 
-<<<<<<< HEAD
-    make all
-    make install
-=======
   make all
   make install
->>>>>>> main
 
 ## Setup
 Imp needs a few things to be configured.
