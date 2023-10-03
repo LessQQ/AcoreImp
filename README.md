@@ -5,13 +5,13 @@ The goal of AcoreImp is to provide a way of starting the AzerothCore servers (au
 ## Install:
 First, we need to build and install libimp:
 
-  make libimp
-  make install-libimp
+    make libimp
+    make install-libimp
 
 Now build the rest:
-  
-  make all
-  make install
+
+    make all
+    make install
 
 ## Setup
 Imp needs a few things to be configured.
@@ -23,6 +23,7 @@ Imp needs a few things to be configured.
 
 ## Running
 Imp can now be run via the commandline.
+
     impauth > /dev/null
     impworld > /dev/null
 
