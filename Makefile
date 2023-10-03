@@ -1,4 +1,4 @@
-all: libimp install-libimp impconfig auth world
+all: impconfig auth world
 
 auth:
 	g++ -o bin/impauth acoreauth.cpp /usr/local/lib/libimp.so -O2

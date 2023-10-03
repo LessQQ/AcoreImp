@@ -67,8 +67,6 @@ void startProgramInBackground(const std::string& program, const std::vector<std:
 
 int main() {
     try {
-        //std::string program = "/home/robb/AzerothCore/azeroth-server/bin/authserver";
-        //std::vector<std::string> args = {"-c /home/robb/AzerothCore/azeroth-server/etc/authserver.conf"};
 
         Imp imp;
         
