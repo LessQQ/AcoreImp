@@ -11,10 +11,10 @@ void CreateBase();
 void Help();
 
 int main(int argc, char* argv[]) {
-    Imp iberia;
+    Imp imp;
 
     if (CheckConfigFile()) {
-        iberia.LoadDataStore(path.c_str(), fileName.c_str());
+        imp.LoadDataStore(path.c_str(), fileName.c_str());
     }
     else {
         std::cout << path << "/" << fileName << std::endl;
@@ -33,8 +33,8 @@ int main(int argc, char* argv[]) {
         CreateBase();
     }
     else if (command == "get") {
-        if (iberia.Contains(argv[2])) {
-            std::string result(iberia.GetValue(argv[2]));
+        if (imp.Contains(argv[2])) {
+            std::string result(imp.GetValue(argv[2]));
             std::cout << result << std::endl;
         }
         else {
@@ -42,11 +42,11 @@ int main(int argc, char* argv[]) {
         }
     }
     else if (command == "set") {
-        iberia.Add(argv[2],argv[3]);
-        iberia.SaveDataStore(path.c_str(), fileName.c_str());
+        imp.Add(argv[2],argv[3]);
+        imp.SaveDataStore(path.c_str(), fileName.c_str());
     }
     else if (command == "remove") {
-        iberia.Remove(argv[2]);
+        imp.Remove(argv[2]);
     }
     else if (command == "version") {
         std::cout << "impconfig v0.2" << std::endl;
@@ -58,19 +58,19 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 bool CheckConfigFile() {
-    ImpIO iberiaIo;
+    ImpIO impio;
     std::string fn = path + "/" + fileName;
-    return iberiaIo.FileExist(fn.c_str());
+    return impio.FileExist(fn.c_str());
 }
 void CreateBase() {
-    Imp iberia;
+    Imp imp;
 
-    iberia.CreateDataStore(path.c_str(), fileName.c_str());
-    iberia.Add("errors", "/home/robb/.imp/error.log");
-    iberia.Add("bank","/home/robb/.imp/bank.ids");
-    iberia.Add("release", "/home/robb/.imp/release");
-    iberia.Add("tmp","/home/robb/.imp/tmp");
-    iberia.SaveDataStore(path.c_str(), fileName.c_str());
+    imp.CreateDataStore(path.c_str(), fileName.c_str());
+    imp.Add("authpath", "/path/to/authserver");
+    imp.Add("authargs","-c /path/to/authserver.conf");
+    imp.Add("worldpath", "/path/to/worldserver");
+    imp.Add("worldargc","/path/to/worldserver.conf");
+    imp.SaveDataStore(path.c_str(), fileName.c_str());
 }
 void Help() {
     std::cout << "not enough parameters!" << std::endl;
