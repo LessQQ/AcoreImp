@@ -10,8 +10,8 @@ First, we need to build and install libimp:
 
 Now build the rest:
 
-  make all
-  make install
+    make all
+    make install
 
 ## Setup
 Imp needs a few things to be configured.
@@ -29,6 +29,7 @@ Imp can now be run via the commandline.
 
 ## Running at boot
 Imp can be run from systemd 
+    
     TODO 
 
 
