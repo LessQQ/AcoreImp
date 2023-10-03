@@ -4,6 +4,16 @@
 #include <unistd.h>
 #include <vector>
 
+#include "Imp/Imp.h"
+#include "Imp/ImpIO.h"
+
+const std::string imppath("/usr/local/etc/imp");
+const std::string impfileName("imp.config");
+
+bool CheckConfigFile();
+void CreateBase();
+void Help();
+
 /**
  * Starts a Linux program in the background.
  *
@@ -57,9 +67,22 @@ void startProgramInBackground(const std::string& program, const std::vector<std:
 
 int main() {
     try {
-        // Example usage: Start the "ls" command in the background
-        std::string program = "/home/robb/AzerothCore/azeroth-server/bin/worldserver";
-        std::vector<std::string> args = {"-c /home/robb/AzerothCore/azeroth-server/etc/worldserver.conf"};
+        //std::string program = "/home/robb/AzerothCore/azeroth-server/bin/worldserver";
+        //std::vector<std::string> args = {"-c /home/robb/AzerothCore/azeroth-server/etc/worldserver.conf"};
+
+        Imp imp;
+        
+        if (CheckConfigFile()) {
+            imp.LoadDataStore(imppath.c_str(), impfileName.c_str());
+        }
+         else {
+            std::cout << imppath << "/" << impfileName << std::endl;
+            std::cout << "imp.config not found!" << std::endl;
+            CreateBase();
+        }
+
+        std::string program = imp.GetValue("worldpath");
+        std::vector<std::string> args = { imp.GetValue("worldargc")};
 
         startProgramInBackground(program, args);
 
@@ -69,4 +92,23 @@ int main() {
     }
 
     return 0;
+}
+
+bool CheckConfigFile() {
+    ImpIO impio;
+    std::string fn = imppath + "/" + impfileName;
+    return impio.FileExist(fn.c_str());
+}
+void CreateBase() {
+    Imp imp;
+
+    imp.CreateDataStore(imppath.c_str(), impfileName.c_str());
+    imp.Add("authpath", "/path/to/authserver");
+    imp.Add("authargs","-c /path/to/authserver.conf");
+    imp.Add("worldpath", "/path/to/worldserver");
+    imp.Add("worldargc","/path/to/worldserver.conf");
+    imp.SaveDataStore(imppath.c_str(), impfileName.c_str());
+}
+void Help() {
+    std::cout << "not enough parameters!" << std::endl;
 }
