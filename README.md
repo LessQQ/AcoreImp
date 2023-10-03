@@ -9,7 +9,7 @@ First, we need to build and install libimp:
   make install-libimp
 
 Now build the rest:
-  
+
   make all
   make install
 
@@ -23,6 +23,7 @@ Imp needs a few things to be configured.
 
 ## Running
 Imp can now be run via the commandline.
+
     impauth > /dev/null
     impworld > /dev/null
 
