@@ -17,9 +17,9 @@ Now build the rest:
 Imp needs a few things to be configured.
 
     impconfig set authpath "/path/to/authserver"
-    impconfig set authargs "-c /path/to/authserver.conf"
+    impconfig set authargs "--config=/path/to/authserver.conf"
     impconfig set worldpath "/path/to/worldserver"
-    impconfig set worldargs "-c /path/to/worldserver.conf"
+    impconfig set worldargs "--config=/path/to/worldserver.conf"
 
 ## Running
 Imp can now be run via the commandline.
