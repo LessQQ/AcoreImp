@@ -48,7 +48,7 @@ void startProgramInBackground(const std::string& program, const std::vector<std:
 
     if (pid < 0) {
         // Forking failed
-        throw std::runtime_error("Failed to start the program.");
+        throw std::runtime_error("Failed to start the world server.");
     } else if (pid == 0) {
         // Child process
         // Start the program in the background
@@ -56,7 +56,7 @@ void startProgramInBackground(const std::string& program, const std::vector<std:
 
         if (result == -1) {
             // execvp failed
-            std::cerr << "Failed to start the program." << std::endl;
+            std::cerr << "Failed to start the world server." << std::endl;
             exit(EXIT_FAILURE);
         }
     } else {
@@ -80,7 +80,7 @@ int main() {
         }
 
         std::string program = imp.GetValue("worldpath");
-        std::vector<std::string> args = { imp.GetValue("worldargc")};
+        std::vector<std::string> args = { imp.GetValue("worldargs")};
 
         startProgramInBackground(program, args);
 
@@ -104,7 +104,7 @@ void CreateBase() {
     imp.Add("authpath", "/path/to/authserver");
     imp.Add("authargs","-c /path/to/authserver.conf");
     imp.Add("worldpath", "/path/to/worldserver");
-    imp.Add("worldargc","/path/to/worldserver.conf");
+    imp.Add("worldargs","/path/to/worldserver.conf");
     imp.SaveDataStore(imppath.c_str(), impfileName.c_str());
 }
 void Help() {
