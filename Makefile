@@ -12,6 +12,9 @@ impconfig:
 libimp:
 	g++ -o bin/libimp.so -shared -fPIC Imp/*.cpp -O2
 
+impdb:
+	g++ -o bin/impdb.so -shared -fPIC impdb.cpp -O2
+
 clean:
 	rm bin/*
 
