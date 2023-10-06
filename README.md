@@ -24,8 +24,8 @@ Imp needs a few things to be configured.
 ## Running
 Imp can now be run via the commandline.
 
-    impauth 2>&1 /dev/null
-    impworld 2>&1 /dev/null
+    impauth > /dev/null
+    impworld > /dev/null
 
 ## Running at boot
 Imp can be run from systemd 
